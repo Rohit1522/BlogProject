@@ -1,0 +1,95 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+ <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+
+<div class="form-grup">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" href="#"> My Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/welcome">Home </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/contact">contact </a>
+        </li>
+     
+        <li class="nav-item">
+  <li class="nav-item dropdown">
+        <h5 class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Blogs
+        </h5>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+         
+          <a class="dropdown-item" href="/ViewBlog">View All Blogs</a>
+          <div class="dropdown-divider"></div>
+          
+        </div>
+      </li>
+       
+          </div>
+        </li>
+       
+      </ul>
+      <a class="nav-link text-warning" href="#">Welcome {{request.user}}</a>
+</li>
+       
+<ul>        
+<ul>           <a href="/accounts/logout"> <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Logout</button> </a> </ul>
+     
+    
+    </div>
+  </nav>
+
+  {% if msg%}
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{msg}}</strong>
+    </div>
+  {%endif%}
+<h1>Upload Files Details:</h1>
+{% if images %}
+<table class="table table-hover">
+  <tr>
+       <th>ID</th><th>Name</th><th>Image</th>  <th>Author</th><!--<th>Date-Time</th> -->
+  </tr>
+    {% for img in images %}
+     <tr>
+       <td>{{img.id}}</td>
+       <td>{{img.name}}</td>
+       <td><a href="/detailProduct/{{img.id}}"><img src="{{img.pic.url}}" height="100" width="150" class="rounded-circle"></a></td>
+   <td>{{img.author}}</td>
+  <!--{% ifequal request.user.username img.author %}--> 
+<td><a href="/deleteproduct/{{img.id}}" class="fa fa-times" onclick="return confirm('Are you sure?')" ></a></td>
+ <!--{% endifequal%}-->
+
+
+       <!-- <td>{{img.author}}</td>
+          <td>{{img.upload_date | timesince}}</td> -->
+           <!-- | -->
+     </tr>
+    {%endfor%}
+  </table>
+{%else%}
+ <h2>No Data Founds</h2>
+{%endif%}
+
+ 
